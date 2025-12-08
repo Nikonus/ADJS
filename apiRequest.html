@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+// Define the URL for the API request to get user information from GitHub   
+const requestUrl = "https://api.github.com/users/Nikonus";
+const xhr = new XMLHttpRequest(); 
+// Create a new XMLHttpRequest object to handle the API request
+xhr.open("GET" , requestUrl); // Initialize a GET request to the specified URL
+xhr.onreadystatechange = function(){
+    console.log(xhr.readyState); 
+    if(xhr.readyState === 3)   
+    {
+        const data = JSON.parse(this.responseText) // Parse the response text as JSON when the request is in progress
+        console.log(data);
+        
+        console.log(data.followers);
+    } 
+}   
+
+
+xhr.send(); // Send the request to the server
+    </script>
+</body>
+</html>
