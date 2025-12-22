@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Browser ko batata hai ki character encoding UTF-8 hogi -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive design ke liye: mobile, tablet sab me sahi dikhe -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page ka title (tab me dikhta hai) -->
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- Simple button banaya -->
+    <!-- Isi button pe hum click event lagane wale hain -->
+    <button>button clicked</button>
+
+    <script>
+        // Yaha hum ek class bana rahe hain jiska naam React rakha hai
+        // Ye real React nahi hai, bas JS class ka example hai
+        class React{
+
+            // constructor tab automatically chalta hai jab new React() likhte hain
+            constructor(){
+
+                // 'this.librery' ek property hai jo object ke saath attach ho jaati hai
+                // 'this' ka matlab: jo current object ban raha hai
+                this.librery = "React";
+
+                // server ka URL object ke andar store kar diya
+                this.server = "https://localhost:3000";
+
+                // Yaha hum button ko select kar rahe hain
+                // aur uspe click event laga rahe hain
+                document
+                  .querySelector("button")
+                  .addEventListener(
+                    "click",
+
+                    // ⚠️ IMPORTANT PART ⚠️
+                    // yaha hum handleClick ko bind kar rahe hain
+                    // kyu? kyuki bina bind ke 'this' undefined ho jata
+                    // bind(this) ka matlab: handleClick ke andar bhi
+                    // 'this' wahi rahe jo class ka object hai
+                    this.handleClick.bind(this)
+                  );
+            }
+
+            // Ye method button click hone par chalega
+            handleClick(){
+
+                // Bas confirm karne ke liye console me print
+                console.log("button clicked");
+
+                // Yaha hum check kar rahe hain ki 'this' kya hai
+                // Agar bind nahi hota, to 'this' = button hota
+                // bind ke baad 'this' = React class ka object
+                console.log(this);
+                
+                // Ab 'this.librery' accessible hai
+                // kyuki this sahi jagah point kar raha hai
+                console.log("librery is " + this.librery);
+
+                // Same cheez server ke saath
+                console.log("server is " + this.server);
+            }
+        }
+
+        // Yaha hum React class ka ek object bana rahe hain
+        // Jaise hi ye line chalti hai, constructor execute ho jata hai
+        const app = new React();
+
+    </script>
+</body>
+</html>
