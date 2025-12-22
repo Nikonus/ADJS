@@ -10,24 +10,51 @@
 
     <script>
 
-// Define the URL for the API request to get user information from GitHub   
+// Yaha pe hum GitHub API ka URL define kar rahe hain
+// Ye URL ek specific user (Nikonus) ki public info deta hai
 const requestUrl = "https://api.github.com/users/Nikonus";
+
+
+// Yaha hum XMLHttpRequest ka object bana rahe hain
+// Iska kaam hota hai browser se server ko request bhejna
 const xhr = new XMLHttpRequest(); 
-// Create a new XMLHttpRequest object to handle the API request
-xhr.open("GET" , requestUrl); // Initialize a GET request to the specified URL
-xhr.onreadystatechange = function(){
+
+
+// Yaha hum request ko configure kar rahe hain
+// "GET" matlab: sirf data lena hai, kuch bhejna nahi
+// requestUrl wo address hai jaha request jaayegi
+xhr.open("GET", requestUrl);
+
+
+// Ye function tab-tab chalega jab request ki state change hogi
+// readyState 0 se 4 tak hota hai
+xhr.onreadystatechange = function () {
+
+    // Har state change pe console me readyState print kar rahe hain
+    // taaki hame pata chale request kis stage pe hai
     console.log(xhr.readyState); 
-    if(xhr.readyState === 3)   
-    {
-        const data = JSON.parse(this.responseText) // Parse the response text as JSON when the request is in progress
+
+    // Yaha hum check kar rahe hain agar readyState === 3 ho
+    // 3 ka matlab: data aa raha hai (loading stage)
+    if (xhr.readyState === 3) {
+
+        // responseText ek string hoti hai
+        // JSON.parse ka use karke hum usko JS object bana rahe hain
+        const data = JSON.parse(this.responseText);
+
+        // Pura data console me dekhne ke liye
         console.log(data);
         
+        // Sirf followers count print kar rahe hain
         console.log(data.followers);
     } 
-}   
+};
 
 
-xhr.send(); // Send the request to the server
+// Yaha actual request server ko bheji ja rahi hai
+// Iske bina kuch bhi nahi hoga
+xhr.send();
+
     </script>
 </body>
 </html>
