@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+
+<script>
+
+// ======================= BASIC CLOSURE EXAMPLE =======================
+
+// Ye function ek outer scope banata hai
+// function init() {
+
+//     // Ye variable init() ke scope me hai
+//     let name = "Mozilla"; 
+
+//     // Ye inner function hai
+//     function displayName() {
+
+//         // Inner function outer variable ko access kar raha hai
+//         // Ye hi closure ka core concept hai
+//         console.log(name); 
+//     }
+
+//     // Inner function call
+//     displayName();
+// }
+
+// init();
+
+// ======================= NESTED FUNCTION + SCOPE =======================
+
+// function outer(){
+
+//     // outer function ka variable
+//     let username = "hitesh"
+
+//     // ❌ Ye line error degi agar uncomment hui
+//     // kyunki secret abhi exist hi nahi karta
+//     console.log("OUTER", secret);
+
+//     function inner(){
+
+//         // Ye variable sirf inner ke scope me hai
+//         let secret = "my123"
+
+//         // inner ko outer ka variable mil raha hai
+//         console.log("inner", username);
+//     }
+
+//     function innerTwo(){
+
+//         // outer ka variable accessible hai
+//         console.log("innerTwo", username);
+
+//         // ❌ Ye error dega
+//         // secret sirf inner() ke andar hai
+//         console.log(secret);
+//     }
+
+//     inner()
+//     innerTwo()
+// }
+
+// outer()
+
+// ❌ Ye error dega
+// kyunki username sirf outer ke scope me hai
+// console.log("TOO OUTER", username);
+
+
+// ======================= FUNCTION RETURNING FUNCTION =======================
+
+// function makeFunc() {
+
+//     // Ye variable makeFunc ke scope me hai
+//     const name = "Mozilla";
+
+//     function displayName() {
+
+//         // Inner function outer variable use kar raha hai
+//         console.log(name);
+//     }
+
+//     // ⚠️ IMPORTANT
+//     // Function return ho raha hai, execute nahi
+//     return displayName;
+// }
+
+// const myFunc = makeFunc();
+
+// Yaha function call ho raha hai
+// Lekin name abhi bhi yaad hai
+// myFunc();
+
+
+
+
+</script>
+
+<script>
+
+    // ======================= NORMAL EVENT HANDLER (COMMENTED) =======================
+
+// document.getElementById("orange").onclick = function(){
+
+//     // Direct color set ho raha hai
+//     document.body.style.backgroundColor = `orange`
+// }
+
+// document.getElementById("green").onclick = function(){
+
+//     document.body.style.backgroundColor = `green`
+// }
+// ======================= CLOSURE BASED SOLUTION =======================
+
+function clickHandler(color){
+
+    // ⚠️ Ye line agar uncomment hoti
+    // to color turant set ho jaata
+    // document.body.style.backgroundColor = `${color}`
+
+    // Yaha hum ek function return kar rahe hain
+    return function(){
+
+        // ⚠️ CLOSURE MAGIC ⚠️
+        // Ye inner function color ko yaad rakhta hai
+        // chahe click baad me ho
+        document.body.style.backgroundColor = `${color}`
+    }
+}
+// Yaha clickHandler turant execute ho jaata hai
+// Lekin return me jo function milta hai
+// wahi actual onclick handler ban jaata hai
+document.getElementById('orange').onclick = clickHandler("orange")
+
+document.getElementById('green').onclick = clickHandler("green")
+
+</script>
+</body>
+</html>
