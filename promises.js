@@ -1,5 +1,33 @@
 // ====================== PROMISE BASICS ======================
 
+
+// ====================== WHAT IS A PROMISE? (INTERVIEW PERSPECTIVE) ======================
+
+/**
+ * 1. DEFINITION: 
+ * Promise ek "Object" hai jo represent karta hai 'eventual completion' (ya failure) 
+ * kisi asynchronous operation ka aur uski resulting value ko.
+ * * 2. ANALOGY: 
+ * Maan lo tumne Burger King se burger order kiya. Unhone tumhe ek "Buzzer" (Token) diya. 
+ * Wo Buzzer ek PROMISE hai. 
+ * - Jab tak burger ban raha hai -> State is PENDING.
+ * - Burger mil gaya (Buzzer baja) -> State is FULFILLED (Resolved).
+ * - Burger khatam ho gaya/kitchen me aag lag gayi -> State is REJECTED.
+ * * 3. TECHNICAL STATE:
+ * [[PromiseState]]: "pending", "fulfilled", or "rejected"
+ * [[PromiseResult]]: undefined (pending), value (fulfilled), or error (rejected)
+ */
+
+// ====================== INDUSTRY-GRADE INSIGHTS ======================
+/**
+ * Q: Hum .then() se Async/Await par kyu shift huye?
+ * A: Chaining (then/catch) se code vertical ho jata hai (Pyramid of Doom), 
+ * lekin Async/Await se code Synchronous jaisa dikhta hai, readable aur 
+ * debug karne mein asaan hota hai.
+ * * Q: Microtask Queue vs Callback Queue?
+ * A: Promises 'Microtask Queue' mein jaate hain, jo 'Callback Queue' (setTimeout) 
+ * se zyada priority rakhte hain. Isliye Promise ka output setTimeout se pehle aa sakta hai.
+ */
 // Ye sirf example hai ki normally fetch ka promise kaise dikhta hai
 // fetch("https://api.example.com/data").then().catch().finally(); 
 
