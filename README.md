@@ -74,7 +74,7 @@ Har file ek specific engineering problem ko solve karti hai:
 ## 👨‍💻 Developer
 
 **Nikhil Dubey**
-*B.Tech Student (5th Sem) | Backend & System Architecture Enthusiast*
+*B.Tech Student (6th Sem) | Backend & System Architecture Engineering*
 
 <div align="center">
 
